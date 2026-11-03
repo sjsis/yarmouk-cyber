@@ -3,125 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قسم هندسة تقنيات الأمن السيبراني - كلية اليرموك الجامعة</title>
+    <title>قسم الأمن السيبراني - كلية اليرموك الجامعة</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #0d1117; color: #c9d1d9; }
-        .cyber-glow { box-shadow: 0 0 25px rgba(0, 242, 254, 0.2); }
-        .cyber-border { border: 1px solid rgba(0, 242, 254, 0.25); }
+        .cyber-glow { box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
+        .cyber-border { border: 1px solid rgba(0, 242, 254, 0.2); }
         .cyber-bg { background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex flex-col">
 
     <!-- شاشة تسجيل الدخول -->
-    <div id="loginSection" class="cyber-bg cyber-border cyber-glow p-8 rounded-2xl max-w-md w-full text-center space-y-6">
-        <div class="flex justify-center">
-            <div class="w-28 h-28 rounded-full cyber-border bg-slate-900 p-2 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-                <i class="fa-solid fa-shield-halved text-cyan-400 text-5xl"></i>
+    <div id="loginSection" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
+        <div class="cyber-bg cyber-border cyber-glow w-full max-w-md p-8 rounded-2xl text-center space-y-6">
+            <div class="inline-block p-4 rounded-full bg-cyan-500/10 text-cyan-400 mb-2">
+                <i class="fa-solid fa-user-shield text-5xl"></i>
             </div>
-        </div>
-        <div>
-            <h1 class="text-2xl font-black text-white">كلية اليرموك الجامعة</h1>
-            <p class="text-cyan-400 text-xs font-bold mt-1">قسم هندسة تقنيات الأمن السيبراني والحوسبة السحابية</p>
-        </div>
-
-        <div class="space-y-4 text-right">
             <div>
-                <label class="block text-xs font-bold text-gray-400 mb-1">اسم الطالب أو المستخدم</label>
-                <input type="text" id="usernameInput" placeholder="أدخل اسمك الكريم..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 text-sm">
+                <h1 class="text-2xl font-black text-white">كلية اليرموك الجامعة</h1>
+                <p class="text-cyan-400 text-sm mt-1 font-bold">قسم الأمن السيبراني - المرحلة الثالثة</p>
             </div>
-            <button onclick="handleLogin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black py-3 rounded-xl transition duration-200 shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
-                <i class="fa-solid fa-right-to-bracket"></i> دخول المنصة
-            </button>
-        </div>
-    </div>
-
-    <!-- لوحة التحكم الرئيسية (تظهر بعد الدخول) -->
-    <div id="dashboardSection" class="hidden max-w-5xl w-full mx-auto space-y-6 py-6">
-        <header class="cyber-bg cyber-border cyber-glow p-6 rounded-2xl flex items-center justify-between flex-wrap gap-4">
-            <div class="flex items-center gap-4">
-                <div class="w-14 h-14 rounded-full cyber-border bg-slate-900 flex items-center justify-center text-cyan-400 text-2xl">
-                    <i class="fa-solid fa-shield-cat"></i>
+            <div class="space-y-4 text-right">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">اسم الطالب / المستخدم</label>
+                    <input type="text" id="usernameInput" placeholder="أدخل اسمك هنا..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-400 transition">
                 </div>
                 <div>
-                    <h1 class="text-lg font-black text-white">كلية اليرموك الجامعة</h1>
-                    <p class="text-cyan-400 text-xs font-bold">هندسة تقنيات الأمن السيبراني - أهلاً بك، <span id="displayName" class="text-white underline"></span></p>
+                    <label class="block text-xs text-gray-400 mb-1">رمز الدخول</label>
+                    <input type="password" id="passwordInput" placeholder="••••••••" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-400 transition">
                 </div>
+                <button onclick="handleLogin()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold p-3 rounded-lg shadow-lg transition duration-200">
+                    <i class="fa-solid fa-right-to-bracket ml-2"></i> دخول المنصة
+                </button>
             </div>
-            <button onclick="logout()" class="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-2 rounded-xl text-xs font-bold hover:bg-red-500/20">
-                تسجيل خروج
-            </button>
-        </header>
-
-        <main class="grid gap-6 md:grid-cols-3">
-            <!-- قسم الأساتذة -->
-            <div class="cyber-bg cyber-border p-5 rounded-2xl space-y-3 md:col-span-1">
-                <h2 class="text-sm font-bold text-cyan-400 border-b border-slate-800 pb-2 flex items-center gap-2">
-                    <i class="fa-solid fa-chalkboard-user"></i> أساتذة القسم
-                </h2>
-                <ul class="text-xs text-gray-300 space-y-2">
-                    <li class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">👨‍🏫 الدكتور سحاب</li>
-                    <li class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">👨‍🏫 مستر علي</li>
-                    <li class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">👨‍🏫 الدكتور مصطفى</li>
-                    <li class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">👨‍🏫 الدكتور حيدر</li>
-                    <li class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">👩‍🏫 المدرس آلاء</li>
-                    <li class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">👨‍🏫 مستر نصير</li>
-                </ul>
-            </div>
-
-            <!-- الجداول والمحاضرات -->
-            <div class="cyber-bg cyber-border p-5 rounded-2xl space-y-3 md:col-span-2">
-                <h2 class="text-sm font-bold text-cyan-400 border-b border-slate-800 pb-2 flex items-center gap-2">
-                    <i class="fa-solid fa-calendar-days"></i> الجدول الأسبوعي والمحاضرات
-                </h2>
-                <div class="space-y-3">
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                        <h3 class="text-white font-bold text-xs mb-1">المرحلة الثالثة - المحاضرات الأسبوعية</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed">
-                            تم تنظيم الجدول الأسبوعي والمواد الدراسية بالتنسيق مع الأساتذة الأفاضل لضمان سير العملية التعليمية بكفاءة عالية داخل القسم.
-                        </p>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
-                        <span class="text-xs text-gray-300">حالة النظام السحابي:</span>
-                        <span class="text-emerald-400 text-xs font-bold">● متصل وآمن 100%</span>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
 
-    <script>
-        function handleLogin() {
-            const input = document.getElementById('usernameInput').value.trim();
-            if (input === "") {
-                alert("يرجى كتابة اسم المستخدم أولاً!");
-                return;
-            }
-            localStorage.setItem('yarmouk_user', input);
-            checkAuth();
-        }
+    <!-- الواجهة الرئيسية -->
+    <div id="appSection" class="hidden flex-1 flex flex-col">
+        <!-- الهيدر -->
+        <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-40">
+            <div class="max-w-6xl mx-auto flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-shield-halved text-cyan-400 text-2xl"></i>
+                    <div>
+                        <h2 class="font-bold text-white leading-none">الأمن السيبراني</h2>
+                        <span class="text-xs text-gray-400">المرحلة الثالثة</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span id="userGreeting" class="text-cyan-400 font-bold text-sm bg-cyan-950/50 px-3 py-1.5 rounded-full border border-cyan-800/50"></span>
+                    <button onclick="handleLogout()" class="text-red-400 hover:text-red-300 text-sm">
+                        <i class="fa-solid fa-power-off"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
 
-        function checkAuth() {
-            const user = localStorage.getItem('yarmouk_user');
-            if (user) {
-                document.getElementById('loginSection').classList.add('hidden');
-                document.getElementById('dashboardSection').classList.remove('hidden');
-                document.getElementById('displayName').innerText = user;
-            } else {
-                document.getElementById('loginSection').classList.remove('hidden');
-                document.getElementById('dashboardSection').classList.add('hidden');
-            }
-        }
+        <!-- القائمة التفاعلية -->
+        <nav class="bg-slate-950 border-b border-slate-800">
+            <div class="max-w-6xl mx-auto flex text-center text-sm font-bold">
+                <button onclick="switchTab('schedule')" id="btn-schedule" class="flex-1 py-3 border-b-2 border-cyan-400 text-cyan-400">الجدول الأسبوعي</button>
+                <button onclick="switchTab('lectures')" id="btn-lectures" class="flex-1 py-3 border-b-2 border-transparent text-gray-400 hover:text-white">المحاضرات</button>
+                <button onclick="switchTab('notes')" id="btn-notes" class="flex-1 py-3 border-b-2 border-transparent text-gray-400 hover:text-white">الملاحظات</button>
+            </div>
+        </nav>
 
-        function logout() {
-            localStorage.removeItem('yarmouk_user');
-            checkAuth();
-        }
+        <!-- المحتوى -->
+        <main class="max-w-6xl mx-auto w-full p-4 flex-1">
+            
+            <!-- قسم الجدول -->
+            <div id="tab-schedule" class="space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-days text-cyan-400"></i> جدول المحاضرات الأسبوعي
+                </h3>
+                <div class="overflow-x-auto rounded-xl border border-slate-800">
+                    <table class="w-full text-right text-sm">
+                        <thead class="bg-slate-900 text-cyan-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-3">اليوم</th>
+                                <th class="p-3">التوقيت</th>
+                                <th class="p-3">المادة</th>
+                                <th class="p-3">اسم التدريسي</th>
+                                <th class="p-3">الصنف / القاعة</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 bg-slate-950/50">
+                            <tr>
+                                <td class="p-3 font-bold text-white" rowspan="3">السبت</td>
+                                <td class="p-3">08:30 - 10:30</td>
+                                <td class="p-3 text-cyan-300 font-bold">برمجة بايثون</td>
+                                <td class="p-3">م.م. علي هزبر</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">CL / قاعة</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">10:30 - 12:30</td>
+                                <td class="p-3 text-cyan-300">مختبر برمجة بايثون</td>
+                                <td class="p-3">م.م. علي هزبر + م. رغديل مزهر</td>
+                                <td class="p-3"><span class="bg-emerald-950 text-emerald-400 text-xs px-2 py-1 rounded">LAB 1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">12:30 - 02:30</td>
+                                <td class="p-3 text-cyan-300 font-bold">التحليل الجنائي الرقمي</td>
+                                <td class="p-3">أ.م.د. حيدر مكي حميد</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">CL / قاعة</span></td>
+                            </tr>
 
-        window.onload = checkAuth;
-    </script>
-</body>
-</html>
+                            <tr>
+                                <td class="p-3 font-bold text-white" rowspan="3">الأحد</td>
+                                <td class="p-3">08:30 - 10:30</td>
+                                <td class="p-3 text-cyan-300 font-bold">معالجة الإشارة الرقمية</td>
+                                <td class="p-3">م.م. آلاء بشير عبد</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">CL / قاعة</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">10:30 - 12:30</td>
+                                <td class="p-3 text-cyan-300">مختبر معالجة الإشارة</td>
+                                <td class="p-3">م.م. آلاء بشير عبد</td>
+                                <td class="p-3"><span class="bg-emerald-950 text-emerald-400 text-xs px-2 py-1 rounded">LAB 1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">12:30 - 01:30</td>
+                                <td class="p-3 text-cyan-300">التحليل الجنائي الرقمي</td>
+                                <td class="p-3">أ.م.د. حيدر مكي حميد</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">Lect / مدرج</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="p-3 font-bold text-white" rowspan="3">الإثنين</td>
+                                <td class="p-3">08:30 - 10:30</td>
+                                <td class="p-3 text-cyan-300 font-bold">أمنية معلومات</td>
+                                <td class="p-3">أ.م.د. سحاب ضياء محمد</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">CL / قاعة</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">10:30 - 12:30</td>
+                                <td class="p-3 text-cyan-300">مختبر أمنية معلومات</td>
+                                <td class="p-3">أ.م.د. سحاب ضياء محمد</td>
+                                <td class="p-3"><span class="bg-emerald-950 text-emerald-400 text-xs px-2 py-1 rounded">LAB 1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">12:30 - 01:30</td>
+                                <td class="p-3 text-cyan-300">مختبر التحليل الجنائي</td>
+                                <td class="p-3">أ.م.د. حيدر + م.مصطفى جاسم</td>
+                                <td class="p-3"><span class="bg-emerald-950 text-emerald-400 text-xs px-2 py-1 rounded">LAB 1</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="p-3 font-bold text-white" rowspan="3">الثلاثاء</td>
+                                <td class="p-3">08:30 - 10:30</td>
+                                <td class="p-3 text-cyan-300 font-bold">هندسة البرمجيات</td>
+                                <td class="p-3">م.د. مصطفى عماد (الريس)</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">CL / قاعة</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">10:30 - 12:30</td>
+                                <td class="p-3 text-cyan-300">مختبر هندسة البرمجيات</td>
+                                <td class="p-3">م.د. مصطفى عماد</td>
+                                <td class="p-3"><span class="bg-emerald-950 text-emerald-400 text-xs px-2 py-1 rounded">LAB 1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">12:30 - 01:30</td>
+                                <td class="p-3 text-cyan-300">برمجة بايثون</td>
+                                <td class="p-3">م.م. علي هزبر</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">Lect / مدرج</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="p-3 font-bold text-white" rowspan="2">الأربعاء</td>
+                                <td class="p-3">08:30 - 10:30</td>
+                                <td class="p-3 text-cyan-300 font-bold">أساسيات شبكات الحاسوب</td>
+                                <td class="p-3">م.م. نصير أحمد</td>
+                                <td class="p-3"><span class="bg-slate-800 text-xs px-2 py-1 rounded">CL / قاعة</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">10:30 - 12:30</td>
+                                <td class="p-3 text-cyan-300">مختبر أساسيات الشبكات</td>
+                                <td class="p-3">م.م. نصير أحمد</td>
+                                <td class="p-3"><span class="bg
